@@ -4,9 +4,9 @@
  
  <mapper namespace="com.quiz.lesson02.dao.StoreDAO">
 	 <select id="selectStoreList" resultType="com.quiz.lesson02.model.Store">
-	 	select
+	 	SELECT
 	 		*
-	 	from
+	 	FROM
 	 		`store`;
 	 </select>
  
