@@ -15,21 +15,9 @@
 <body>
 	<div class="container">
 		<h1>판매자 정보</h1>
-		<%
-		if (request.getParameter("id") == null) {
-			%>
-			<img src="${lastSeller.profileImageUrl}" alt="profileImage" width="300px">
-			<div class="display-3">${lastSeller.nickname}</div>
-			<div class="text-warning display-4"><b>${lastSeller.temperature}</b></div>
-			<%
-		} else {
-			%>
-			<img src="${sellerById.profileImageUrl}" alt="profileImage" width="300px">
-			<div class="display-3">${sellerById.nickname}</div>
-			<div class="text-warning display-4"><b>${sellerById.temperature}</b></div>
-			<%	
-		}
-		%>
+			<img src="${result.profileImageUrl}" alt="profileImage" width="300px">
+			<div class="display-3">${result.nickname}</div>
+			<div class="text-warning display-4"><b>${result.temperature}</b></div>
 	</div>
 </body>
 </html>

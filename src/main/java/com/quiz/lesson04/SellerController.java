@@ -32,7 +32,7 @@ public class SellerController {
 			// 입력받은 정보
 			@RequestParam("nickname") String nickname,
 			@RequestParam(value ="profileImageUrl", required = false) String profileImageUrl,
-			@RequestParam("temperature") double temperature
+			@RequestParam(value ="temperature") double temperature
 			) {
 		// DB에 insert
 		sellerBO.addSeller(nickname, profileImageUrl, temperature);
@@ -46,10 +46,14 @@ public class SellerController {
 	public String Seller(Model model, 
 			@RequestParam(value = "id", required = false) Integer id
 			) {
-		Seller seller1 = sellerBO.getLsatSeller();
-		Seller seller2 = sellerBO.getSellerById(id);
-		model.addAttribute("lastSeller", seller1);
-		model.addAttribute("sellerById", seller2);
+		Seller seller = null;
+		if (id == null) {
+			seller = sellerBO.getLsatSeller();			
+			model.addAttribute("result", seller);
+		} else {
+			seller = sellerBO.getSellerById(id);
+			model.addAttribute("result", seller);
+		}
 		return "lesson04/getLastSeller";
 	}
 	
