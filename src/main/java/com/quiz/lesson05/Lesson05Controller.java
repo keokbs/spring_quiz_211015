@@ -74,11 +74,20 @@ public class Lesson05Controller {
 		// http://localhost/lesson05/quiz03
 		@RequestMapping("/lesson05/quiz03")
 		public String quiz03(Model model) {
+			
+			// 3-1
 			List<Integer> candidates = new ArrayList<>();
 			candidates.add(263001);
 			candidates.add(173942); 
 			candidates.add(563057);
 			
+			// 총 투표수를 구한다 -> Controller보단 BO에서 처리하면 좋다. 
+			int totalCount = 0;
+			for (Integer candidate : candidates) {
+				totalCount += candidate;
+			}
+			
+			// 3-2
 			List<Map<String, Object>> cardBills = new ArrayList<>();
 
 			Map<String, Object> cardBill = new HashMap<>();
@@ -102,8 +111,10 @@ public class Lesson05Controller {
 			cardBill.put("installment", "일시불");
 			cardBills.add(cardBill);
 			
+			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("candidates", candidates);
-			model.addAttribute("cardBill", cardBills);
+			model.addAttribute("cardBills", cardBills);
+			
 			return "lesson05/quiz03";
 		}
 	
