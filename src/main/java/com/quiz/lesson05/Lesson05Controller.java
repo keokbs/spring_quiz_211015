@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.quiz.lesson05.model.Member;
+
 @Controller
 public class Lesson05Controller {
 	
