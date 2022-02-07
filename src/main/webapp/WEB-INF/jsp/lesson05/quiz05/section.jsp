@@ -17,32 +17,31 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="weatherhistory" items="${weatherhistory}">
+			<c:forEach var="weatherHistory" items="${weatherHistory}">
 				<tr>
 					<td>
-						<fmt:parseDate var="date" value="${weatherhistory.date}" pattern="yyyy-MM-dd" />
-						<fmt:formatDate value="${date}" pattern="yyyy년 MM월 d일" />
+						<fmt:formatDate value="${weatherHistory.date}" pattern="yyyy년 MM월 d일" />
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="${weatherhistory.weather} eq 'sunny'">
-								<img src="https://pixabay.com/ko/photos/%ec%83%88-%ec%9d%b8%eb%8f%84-%ec%b1%84%ed%8c%85-%ec%a1%b0%eb%a5%98%ed%95%99-%ec%a2%85-6983434/" alt="sunny">
+							<c:when test="${weatherHistory.weather eq '맑음'}">
+								<img src="/images/sunny.jpg" alt="날씨">
 							</c:when>
-							<c:when test="${weatherhistory.weather} eq 'partlyCloudy'">
-								<img src="https://pixabay.com/ko/photos/%ec%83%88-%ec%9d%b8%eb%8f%84-%ec%b1%84%ed%8c%85-%ec%a1%b0%eb%a5%98%ed%95%99-%ec%a2%85-6983434/" alt="partlyCloudy">
+							<c:when test="${weatherHistory.weather eq '구름조금'}">
+								<img src="/images/partlyCloudy.jpg"" alt="날씨">
 							</c:when>
-							<c:when test="${weatherhistory.weather} eq 'cloudy'">
-								<img src="https://pixabay.com/ko/photos/%ec%83%88-%ec%9d%b8%eb%8f%84-%ec%b1%84%ed%8c%85-%ec%a1%b0%eb%a5%98%ed%95%99-%ec%a2%85-6983434/" alt="cloudy">
+							<c:when test="${weatherHistory.weather eq '흐림'}">
+								<img src="/images/cloudy.jpg"" alt="날씨">
 							</c:when>
-							<c:when test="${weatherhistory.weather} eq 'rainy'">
-								<img src="https://pixabay.com/ko/photos/%ec%83%88-%ec%9d%b8%eb%8f%84-%ec%b1%84%ed%8c%85-%ec%a1%b0%eb%a5%98%ed%95%99-%ec%a2%85-6983434/" alt="rainy">
+							<c:when test="${weatherHistory.weather eq '비'}">
+								<img src="/images/rainy.jpg"" alt="날씨">
 							</c:when>
 						</c:choose>
 					</td>
-					<td>${weatherhistory.temperatures}</td>
-					<td>${weatherhistory.precipitation}</td>
-					<td>${weatherhistory.microDust}</td>
-					<td>${weatherhistory.windSpeed}</td>
+					<td>${weatherHistory.temperatures}℃</td>
+					<td>${weatherHistory.precipitation}mm</td>
+					<td>${weatherHistory.microDust}</td>
+					<td>${weatherHistory.windSpeed}km/h</td>
 				</tr>
 			</c:forEach>
 		</tbody>

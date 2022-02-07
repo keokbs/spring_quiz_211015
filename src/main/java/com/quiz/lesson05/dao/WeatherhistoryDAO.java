@@ -2,14 +2,22 @@ package com.quiz.lesson05.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.quiz.lesson05.model.Weatherhistory;
+import com.quiz.lesson05.model.WeatherHistory;
 
 @Repository
-public interface WeatherhistoryDAO {
+public interface WeatherHistoryDAO {
 	
-	public List<Weatherhistory> selectWeatherhistoryList();
+	public List<WeatherHistory> selectWeatherHistoryList();
 	
-	public void insertWeaterhistoryDAO();
+	public void insertWeaterHistoryDAO(
+			@Param("date") String date,
+			@Param("weather") String weather,
+			@Param("microDust") String microDustdate,
+			@Param("temperatures") double temperatures,
+			@Param("precipitation") double precipitation,
+			@Param("windSpeed") double windSpeed
+			);
 }

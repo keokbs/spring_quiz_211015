@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <footer class="d-flex align-items-center">
-	<div class="footer-logo col-2">
-		<img src="C:\김혜주\5_spring\quiz_workspace\SpringQuiz\src\main\resources\static\images\기상청흑백.jpg" alt="기상청">
+	<div class="footer-logo col-2 pl-0">
+		<img src="\images\기상청흑백.jpg" alt="기상청" width="200px" height="80px" class="p-0">
 	</div>
 	<small class="col-10 pl-4">
 		<span> 

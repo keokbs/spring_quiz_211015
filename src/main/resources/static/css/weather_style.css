@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#warp{width: 1200px;}
+aside {background-color: #64a0ff;}
+.aside-font {color: white; font-weight: bold; font-size: 20px;}
+ul {list-style: none; text-align: start;}
+li a {color: white;}
+li a:hover{color: white; text-decoration: none;}
+.logo a:hover{color: white; text-decoration: none;}
+.line {border-bottom:0.01px solid #dedede;}
+
+footer{height: 80px;}
+small {color: gray; font-weight: bold;}
