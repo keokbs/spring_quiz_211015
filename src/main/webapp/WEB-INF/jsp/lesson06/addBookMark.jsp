@@ -17,12 +17,12 @@
 		<h1><b>즐겨찾기 추가하기</b></h1>
 		<div class="form-group mt-3">
 			<span>제목</span>
-			<input type="text" id="name" class="form-control" name="name" placeholder="제목을 입력하세요">
+			<input type="text" id="name" class="form-control" placeholder="제목을 입력하세요">
 		</div>
 		
 		<div class="form-group mt-3">
 			<span>주소</span>
-			<input type="text" id="url" class="form-control" name="url" placeholder="주소를 입력하세요">
+			<input type="text" id="url" class="form-control" placeholder="주소를 입력하세요">
 		</div>
 		<input type="button" id="addBtn" class="btn btn-success w-100 mt-2" value="추가">
 	</div>
@@ -45,12 +45,24 @@ $(document).ready(function() {
 			return;
 		}
 		
+		// http도 아니고 https도 아닐 때 => 얼럿을 띄워야 함
+		if (url.startsWith("http") === false && url.startsWith("https") === false) {
+			alert("주소 형식이 잘못되었습니다.");
+			return;
+		}
+		
+		// 서버에 호출
+		
 		$.ajax({
 			type: 'GET'
 			, url: "/lesson06/add_book_mark"
 			, data: {'name':name, 'url':url}
 			, success: function(data) {
-				location.href = "/lesson06/book_mark_list_veiw"
+				// alert(data.result);
+				if (data.result == "success") {
+					// 목록 화면으로 이동
+					location.href = "/lesson06/book_mark_list_veiw"
+				}
 			}
 			, error : function(e) {
 				alert("error : " + e);
