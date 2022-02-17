@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.quiz.lesson02.dao.StoreDAO;
 import com.quiz.lesson02.model.Store;
+import com.quiz.lesson05.model.NewReview;
 
 @Service
 public class StoreBO {
@@ -15,5 +16,13 @@ public class StoreBO {
 	
 	public List<Store> getStoreList() {
 		return storeDAO.selectStoreList();
+	}
+	
+	public int getStoreIdByName(String name) {
+		return storeDAO.getStoreIdByName(name);
+	}
+	
+	public NewReview getNewReviewByStoreId(int storeId){
+		return storeDAO.getNewReviewByStoreId(storeId);
 	}
 }

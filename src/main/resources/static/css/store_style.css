@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#wrap {width: 700px;}
+
+header {
+	height: 80px
+}
+
+.logo-font {
+	font-size: 35px;
+	color: white;
+}
+
+.font-size {
+	font-size: 50px;
+}
+
+.info-font-size {
+	font-size: 15px;
+}
+
+.info-box {
+	border-radius: 0.5rem;
+	border: 1px solid #17a2b8;
+}
+
+.info-text {
+	text-align: left;
+	color : #000;
+}
+
+
+.footer-font-size1 {
+	font-size: 20px;
+}
+
+.footer-font-size2 {
+	font-size: 15px;
+	color: #999;
+}
