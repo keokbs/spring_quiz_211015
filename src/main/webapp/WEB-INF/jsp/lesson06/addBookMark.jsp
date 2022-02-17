@@ -22,7 +22,12 @@
 		
 		<div class="form-group mt-3">
 			<span>주소</span>
-			<input type="text" id="url" class="form-control" placeholder="주소를 입력하세요">
+			<div class="d-flex">
+				<input type="text" id="url" class="form-control mr-4" placeholder="주소를 입력하세요">
+				<input type="button" id="urlCheckBtn" class="btn btn-info" value="중복확인">
+			</div>
+			<small id="isDuplicationText" class="text-danger d-none">중복된 url 입니다.</small>
+			<small id="availableUrlText" class="text-success d-none">저장 가능한 url 입니다.</small>
 		</div>
 		<input type="button" id="addBtn" class="btn btn-success w-100 mt-2" value="추가">
 	</div>
@@ -51,8 +56,13 @@ $(document).ready(function() {
 			return;
 		}
 		
-		// 서버에 호출
+		// quiz02 - 중복확인 체크
+		if (!$('#availableUrlText').hasClass("d-none") == false) {
+			alert("다시 중복 확인을 해주세요.");
+			return;
+		}
 		
+		// 서버에 호출
 		$.ajax({
 			type: 'GET'
 			, url: "/lesson06/add_book_mark"
@@ -68,6 +78,30 @@ $(document).ready(function() {
 				alert("error : " + e);
 			}
 		});
+	});
+	
+	$("#urlCheckBtn").on('click', function(e) {
+		// alert("click?");
+		let url = $('#url').val().trim();
+		
+		$.ajax({
+			type: 'POST'
+			, url: "/lesson06/is_duplication_url"
+			, data: {'url':url}
+			, success: function(data) {
+				if(data.result) {
+					$("#isDuplicationText").removeClass("d-none");
+					$("#availableUrlText").addClass("d-none");
+				} else {
+					$("#availableUrlText").removeClass("d-none");
+					$("#isDuplicationText").addClass("d-none");
+				}
+			}
+			, error : function(e) {
+				alert("error : " + e);
+			}
+		});
+	
 	});
 });
 

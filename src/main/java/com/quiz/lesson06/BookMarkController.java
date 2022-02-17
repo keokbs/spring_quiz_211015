@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,6 +56,41 @@ public class BookMarkController {
 		model.addAttribute("bookMark", bookMark);
 		
 		return "lesson06/bookMarkListVeiw";
+	}
+	
+	// 주소 중복 확인 - ajax통신 호출
+	@PostMapping("/lesson06/is_duplication_url")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicationUrl(
+			@RequestParam String url) {
+		
+		// DB 중복 확임
+		BookMark bookMark = bookMarkBO.getBookMarkByUrl(url);
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("result", true);
+		
+		if (bookMark == null) {
+			result.put("result", false);
+		}
+		
+		return result;
+	}
+	
+	// 즐겨찾기 삭제 - AJAX 호출
+	@PostMapping("/lesson06/delete_bookMark")
+	@ResponseBody
+	public Map<String, String> deleteBookMark(
+			@RequestParam int id) {
+		// DB delete
+		int deleteRowCount = bookMarkBO.deleteBookMarkByid(id);
+		
+		Map<String, String> result = new HashMap<>();
+		result.put("result", "success");
+		if (deleteRowCount < 1) {
+			result.put("result", "fail");
+		}
+		
+		return result;
 	}
 	
 	

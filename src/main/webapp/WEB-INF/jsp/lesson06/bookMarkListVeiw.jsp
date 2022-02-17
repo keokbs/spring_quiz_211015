@@ -22,18 +22,67 @@
 					<th class="col-1">No.</th>
 					<th class="col-3">이름</th>
 					<th class="col-8">주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="bookMark" items="${bookMark}" varStatus="status">
 					<tr>
-						<td>${status.count}</td>
+						<td>${bookMark.id}</td>
 						<td>${bookMark.name}</td>
 						<td>${bookMark.url}</td>
+						<td>
+							<%-- 1) name 속성과 value 속성을 이용해서 삭제버튼 감지 --%>
+							<%-- <button type="button" name="delBtn" class="btn btn-danger" value="${bookMark.id}">삭제</button> --%>
+							
+							<%-- 2) data를 이용해서 태그에 임시 저장해놓기 --%>
+							<%-- data-변수명 : 변수명은 카멜케이스는 인식을 못함으로 하이픈(-)으로 연결해 주어야함 --%>
+							<button type="button" class="del-btn btn btn-danger" data-book-mark-id="${bookMark.id}">삭제</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 </body>
+<script>
+$(document).ready(function() {
+	// alert("ok?");
+	
+	// 1) name 속성과 value 속성을 이용해서 삭제버튼 감지
+	/* $('td').on('click', 'button[name=delBtn]', function(e) { // 파라미터 하나 더 추가
+		
+		// let id = $(this).attr('value');
+		// let id = e.target.value;
+		
+	}); */
+	
+	// 2) data를 이용해서 태그에 임시 저장해놓기
+	// 자바스크립트 : $(this).data('book-mark-id');
+	$('.del-btn').on('click', function(e) {
+		let id = $(this).data('book-mark-id');
+ 		$.ajax({
+			type: "post"
+			, data: {"id" : id}
+			, url: "/lesson06/delete_bookMark"
+			, success: function(data) {
+				alert(data.result);
+				if (data.result == 'success'){
+					// 새로고침
+					location.reload();
+				} else {
+					alert("삭제 하는데 실패했습니다. 관리자에게 문의해주세요");
+				}
+			}
+			, error: function(e) {
+				alert("error" + e);
+			}
+		}); 
+	});
+	
+});
+
+		
+</script>
+
 </html>

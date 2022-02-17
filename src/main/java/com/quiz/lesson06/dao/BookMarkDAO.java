@@ -17,4 +17,8 @@ public interface BookMarkDAO {
 	
 	public List<BookMark> selectBookMark();
 	
+	public BookMark selectBookMarkByUrl(String url);
+	
+	public int deleteBookMarkByid(int id);
+	
 }

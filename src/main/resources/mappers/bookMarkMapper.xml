@@ -29,4 +29,28 @@
  			, `updatedAt`
  		FROM `bookmark`;
  	</select>
+ 	
+ 	<select id="selectBookMarkByUrl" parameterType="string" resultType="com.quiz.lesson06.model.BookMark">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `url`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM 
+ 			`bookmark`
+ 		WHERE 
+ 			`url` = #{url};
+ 	</select>
+ 	
+ 	<delete id="deleteBookMarkByid" parameterType="int">
+ 		DELETE
+ 		FROM
+ 			`bookmark`
+ 		WHERE 
+ 			`id` = #{id};
+ 	</delete>
+ 	
+ 	
+ 	
  </mapper>

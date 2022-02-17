@@ -21,4 +21,13 @@ public class BookMarkBO {
 	public List<BookMark> getBookMark() {
 		return bookMarkDAO.selectBookMark();
 	}
+	
+	public BookMark getBookMarkByUrl(String url) {
+		return bookMarkDAO.selectBookMarkByUrl(url);
+	}
+	
+	public int deleteBookMarkByid(int id) {
+		return bookMarkDAO.deleteBookMarkByid(id);
+	}
+	
 }
